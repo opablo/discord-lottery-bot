@@ -1,6 +1,6 @@
 {
   "name": "discord-lottery-bot",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Lottery Game Bot for Discord",
   "repository": {
     "type": "git",
@@ -9,9 +9,11 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "package": "docker build -t us.gcr.io/sunny-jetty-285920/discord-lottery-bot:latest .",
-    "publish": "docker push us.gcr.io/sunny-jetty-285920/discord-lottery-bot:latest",
+    "package": "docker build -t us.gcr.io/sunny-jetty-285920/$npm_package_name:$npm_package_version .",
+    "publish": "docker push us.gcr.io/sunny-jetty-285920/$npm_package_name:$npm_package_version",
     "deploy": "kubectl apply -f deployment.yml",
+    "gcpConfigDelete": "kubectl delete configmap discord-lottery-bot-config",
+    "gcpConfigDeploy": "kubectl create configmap discord-lottery-bot-config --from-env-file=.env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

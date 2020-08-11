@@ -2,15 +2,21 @@ const util = require('util')
 
 module.exports = { 
     
-    log: function(msg, obj) {
-        if (typeof obj !== 'undefined') {
-            console.log(msg + util.inspect(obj, {showHidden: false, depth: null, colors: true}));
-        } else {
-            console.log(msg);
+    getEnvOrExit: function(name, obfuscateLog=false) {
+        if (!process.env.hasOwnProperty(name)) {
+            console.log("Missing environment variable " + name); 
+            process.exit(1);
         }
+        let value = process.env[name];
+        if (obfuscateLog) {
+            console.log(util.format("...env %s = %s...%s", name, value.substr(0, 2), value.substr(-2, 2)));            
+        } else {
+            console.log(util.format("...env %s = %s", name, value));
+        }
+        return value;
     },
 
-    trimLines: function(input) {
+    trimEachLine: function(input) {
         return input.replace(/(^\s+|\s+$)/gm, '')
     },
 
