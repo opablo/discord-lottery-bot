@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: discord-lottery-bot
+  name: discord-lottery-bot
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discord-lottery-bot
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: discord-lottery-bot
+    spec:
+      containers:
+      - name: discord-lottery-bot-latest
+        image: us.gcr.io/sunny-jetty-285920/discord-lottery-bot:latest

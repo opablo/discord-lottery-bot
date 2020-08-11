@@ -8,12 +8,17 @@
   },
   "main": "bot.js",
   "scripts": {
+    "start": "node bot.js",
+    "package": "docker build -t us.gcr.io/sunny-jetty-285920/discord-lottery-bot:latest .",
+    "publish": "docker push us.gcr.io/sunny-jetty-285920/discord-lottery-bot:latest",
+    "deploy": "kubectl apply -f deployment.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "discord.js": "^12.2.0"
   }
 }
