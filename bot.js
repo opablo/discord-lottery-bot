@@ -38,15 +38,15 @@ function handleMessage(message) {
     }
 
     if (message.channel.type == "text" ) {
-        console.log(util.format("...%s - #%s - %s_%s: %s", message.channel.guild.name, message.channel.name, 
-            message.author.username, message.author.discriminator, message.content.split('\n')[0]));
+        //console.log(util.format("...%s - #%s - %s_%s: %s", message.channel.guild.name, message.channel.name, 
+        //    message.author.username, message.author.discriminator, message.content.split('\n')[0]));
         handleChannelMessage(message);
     } else if (message.channel.type == "dm" ) {
-        console.log(util.format("...DM - DM - %s_%s: %s", 
-            message.author.username, message.author.discriminator, message.content.split('\n')[0]));
+        //console.log(util.format("...DM - DM - %s_%s: %s", 
+        //    message.author.username, message.author.discriminator, message.content.split('\n')[0]));
         handleDirectMessage(message);
     } else {
-        console.log("...unknown channel type: " + message.channel.type);
+        //console.log("...unknown channel type: " + message.channel.type);
     }
 }
 
