@@ -9,9 +9,9 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "package": "docker build -t us.gcr.io/sunny-jetty-285920/$npm_package_name:$npm_package_version .",
-    "publish": "docker push us.gcr.io/sunny-jetty-285920/$npm_package_name:$npm_package_version",
-    "deploy": "kubectl apply -f deployment.yml",
+    "package": "docker build -t us.gcr.io/sunny-jetty-285920/discord-lottery-bot:$npm_package_version .",
+    "upload": "docker push us.gcr.io/sunny-jetty-285920/discord-lottery-bot:$npm_package_version",
+    "deploy": "kubectl set image deployment discord-lottery-bot app=us.gcr.io/sunny-jetty-285920/discord-lottery-bot:$npm_package_version",
     "gcpConfigDelete": "kubectl delete configmap discord-lottery-bot-config",
     "gcpConfigDeploy": "kubectl create configmap discord-lottery-bot-config --from-env-file=.env",
     "test": "echo \"Error: no test specified\" && exit 1"
